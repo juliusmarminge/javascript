@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-import { useReverificationFlow } from '../../reverification';
 import { UserProfileSolanaWalletDialog } from './user-profile-solana-wallet.dialog';
 import { useUserProfileWeb3WalletsController } from './user-profile-web3-wallets-section.controller';
 import { useUserProfileWeb3WalletsModel } from './user-profile-web3-wallets-section.model';
@@ -36,13 +35,7 @@ function Web3Wallets({
   model: ReadyWeb3WalletsModel;
   fallbackFocus?: () => HTMLElement | null;
 }) {
-  const [removeWallet, reverification] = useReverificationFlow((id: string) => model.remove?.(id));
-  const controller = useUserProfileWeb3WalletsController({
-    ...model,
-    remove: model.remove ? removeWallet : undefined,
-    fallbackFocus,
-    reverification,
-  });
+  const controller = useUserProfileWeb3WalletsController({ ...model, fallbackFocus });
   return (
     <>
       <UserProfileWeb3WalletsSectionView

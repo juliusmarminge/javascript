@@ -4,7 +4,6 @@ import { useConfirmController } from '../../../blocks/confirm';
 import { useListRemovalFocus } from '../../../hooks/use-list-removal-focus';
 import { usePendingAction } from '../../../hooks/use-pending-action';
 import { useMessages } from '../../../localization';
-import type { ReverificationController } from '../../reverification';
 import type {
   ReadyWeb3WalletsModel,
   UserProfileWeb3Provider,
@@ -21,9 +20,11 @@ export function useUserProfileWeb3WalletsController({
   remove,
   fallbackFocus,
   reverification,
-}: Pick<ReadyWeb3WalletsModel, 'wallets' | 'availableProviders' | 'connect' | 'setPrimary' | 'remove'> & {
+}: Pick<
+  ReadyWeb3WalletsModel,
+  'wallets' | 'availableProviders' | 'connect' | 'setPrimary' | 'remove' | 'reverification'
+> & {
   fallbackFocus?: () => HTMLElement | null;
-  reverification?: ReverificationController;
 }) {
   const messages = useMessages('userProfileWeb3Wallets');
   const action = usePendingAction({ errorFallback: messages.errors.generic });
